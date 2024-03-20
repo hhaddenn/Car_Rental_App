@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Luxury Wheels</title>
+    <!--Bootsrap 4-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/flatly/bootstrap.min.css" integrity="sha384-qF/QmIAj5ZaYFAeQcrQ6bfVMAh4zZlrGwTPY7T/M+iTTLJqJBJjwwnsE5Y0mV7QK" crossorigin="anonymous">
+    <!--Fontes de Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <!--Folha de estilos main.css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  </head>
+  <body>
+    <main class="container p-4">
+      <h1 class="display-4 text-center mt-4 titulo">Luxury Wheels</h1>
+      <div class="row">
+        <div class="col-md-4 offset-md-4 my-auto"> <!--Este div vai ocupar 4
+        colunas do espaço (centrado)-->
+          <div class="card"> <!--Criação do objeto card-->
+            <div class="card-header">
+              <form action="/criar-cliente" method="post">
+                  <h4>
+                    <div class="form-group">
+                      <label for="Email" class="form-label mt-4">Email</label>
+                      <input type="email" class="form-control" name="inputEmail" placeholder="Email">
+                    </div>
+                  </h4>
+                  <h4>
+                    <div class="form-group">
+                      <label for="Password" class="form-label mt-4">Password</label>
+                      <input type="password" class="form-control" name="inputPassword" placeholder="Password" autocomplete="off">
+                    </div>
+                  </h4>
+                  <h4>
+                    <div class="form-group">
+                      <label for="InputName" class="form-label mt-4">Primeiro Nome</label>
+                      <input type="text" class="form-control" name="inputNome" placeholder="Primeiro Nome">
+                    </div>
+                  </h4>
+                  <h4>
+                    <div class="form-group">
+                      <label for="InputSurname" class="form-label mt-4">Apelido</label>
+                      <input type="text" class="form-control" name="inputApelido" placeholder="Apelido">
+                    </div>
+                  </h4>
+                  <h4>
+                    <div class="form-group">
+                      <label for="Contribuinte" class="form-label mt-4">Nº Contribuinte</label>
+                      <input type="number" class="form-control" name="inputContribuinte" placeholder="Contribuinte">
+                    </div>
+                  </h4>
+                  <h4>
+                    <div class="form-group">
+                      <label for="Nascimento" class="form-label mt-4">Data de Nascimento</label>
+                      <input type="date" class="form-control" name="inputNascimento" placeholder="Data de Nascimento">
+                    </div>
+                  </h4>
+                  <div class="card-body text-center">
+                    <p class="text-danger">{{ error }}</p>
+                    <a href="/"><button class="btn btn-lg btn-primary" type="button">Login</button></a>
+                    <button class="btn btn-lg btn-primary text-center" type="submit">Registar</button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

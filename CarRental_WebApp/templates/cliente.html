@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Luxury Wheels</title>
+    <!--Bootsrap 4-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/flatly/bootstrap.min.css" integrity="sha384-qF/QmIAj5ZaYFAeQcrQ6bfVMAh4zZlrGwTPY7T/M+iTTLJqJBJjwwnsE5Y0mV7QK" crossorigin="anonymous">
+    <!--Fontes de Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <!--Folha de estilos main.css-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+      <div class="container-fluid">
+        <p class="navbar-brand text-light">
+          Luxury Wheels
+        </p>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/veiculos/{{cliente.id}}">Veiculos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-info" href="/cliente/{{cliente.id}}">Cliente</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <main class="container p-4">
+      <h1 class="display-4 text-center mt-4 titulo">Olá {{ cliente.nome }}</h1>
+      <hr>
+      {% if cliente.reserva==0 %}
+        <h2>Não tem nenhuma reserva</h2>
+      {% else %}
+        <h2>Tem uma reserva feita</h2>
+        <ul class="list-group shadow">
+          <li class="list-group-item">
+            <div class="media align-items-lg-center flex-column flex-lg-row"> <img src={{veiculo.imagem}} alt="Generic placeholder image" width="250" height="200" class="order-1 order-lg-1">
+              <div class="media-body order-2 order-lg-2 ml-lg-5">
+                <h5 class="mt-0 mb-1">{{veiculo.marca.title()}} {{veiculo.modelo.title()}}</h5>
+                <div class="product-rating mb-2"> 
+                  <ul>
+                    <li>
+                      <span class="product_price price-new">Valor da reserva: {{reserva.total}}€ </span>
+                    </li>
+                    <li>
+                      <span>Forma de pagamento: {{pagamento.forma_pagamento.title()}} </span>
+                    </li>
+                    <li>
+                      <span>Início da reserva: {{reserva.inicio}} </span>
+                    </li>
+                    <li>
+                      <span class="product_price price-new">Fim da reserva: {{reserva.fim}} </span>
+                    </li>
+                  </ul>
+                <hr class="mb-2 mt-1 seperator">
+                <div class="d-flex align-items-center justify-content-between mt-1">
+                  <ul class="list-inline">
+                    <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Motor: {{veiculo.motor.title()}}</li>
+                    <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Combustível: {{veiculo.combustivel.title()}}</li>
+                    <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Transmição: {{veiculo.transmicao.title()}}</li>
+                  </ul>
+                  <ul class="list-inline">
+                    <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Tração: {{veiculo.tracao.title()}}</li>
+                    <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Portas: {{veiculo.portas}}</li>
+                    <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Passageiros: {{veiculo.pessoas}}</li>
+                  </ul>
+                  <ul class="list-inline">
+                    <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Cor: {{veiculo.cor.title()}}</li>
+                    <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Categoria: {{veiculo.categoria.title()}}</li>
+                    <li><img src="https://img.icons8.com/material-outlined/10/000000/filled-circle--v1.png"> Tipo: {{veiculo.veiculo.title()}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+        </li>
+        </ul>
+        <a href="/editar_reserva/{{cliente.id}}/{{veiculo.id}}/{{'message'}}"><button class="btn btn-lg btn-primary text-center" type="submit">Editar reserva</button></a>
+      {% endif %}
+    </main>
+  </body>
+</html>
